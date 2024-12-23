@@ -9,10 +9,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -62,7 +58,7 @@
                         <a href="/login" class="block py-3.5 px-8 bg-transparent text-primary rounded-md">Login</a>
                     </li>
                     <li>
-                        <a href="#" class="block py-3.5 px-8 bg-primary text-white rounded-md">Registrasi</a>
+                        <a href="/register" class="block py-3.5 px-8 bg-primary text-white rounded-md">Registrasi</a>
                     </li>
                 </ul>
             </div>
