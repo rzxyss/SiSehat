@@ -5,10 +5,19 @@ use App\Http\Controllers\ApotekerController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BmiController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('home');
+Route::prefix('bmi')->name('bmi.')->group(function () {
+    Route::get('/', [BmiController::class, 'index'])->name('index');
+    Route::post('/hitung', [BmiController::class, 'hitung'])->name('hitung');
+});
+Route::prefix('blog')->name('blog.')->group(function () {
+    Route::get('/', [BlogController::class, 'index'])->name('index');
 });
 
 Route::get('/dashboard', function () {
