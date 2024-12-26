@@ -7,6 +7,7 @@ use App\Http\Controllers\PasienController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BmiController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ObatController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,10 @@ Route::prefix('bmi')->name('bmi.')->group(function () {
 });
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
+});
+Route::prefix('obat')->name('obat.')->group(function () {
+    Route::get('/', [ObatController::class, 'index'])->name('index');
+    Route::get('/tambah', [ObatController::class, 'create'])->name('tambah');
 });
 
 Route::get('/dashboard', function () {
