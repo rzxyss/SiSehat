@@ -13,7 +13,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
     <!-- Core Css -->
     <link rel="stylesheet" href="{{ asset('admin/css/theme.css') }}" />
-    <title>Spike TailwindCSS HTML Admin Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>SiSehat - Admin Panel</title>
 </head>
 
 <body class=" bg-surface">
@@ -22,7 +25,7 @@
         <div id="main-wrapper" class=" flex p-5 xl:pr-0 min-h-screen">
             <!--  Sidebar Start -->
             @include('layouts.dashboard.sidebar')
-            <!--  Sidebar Start -->
+            <!--  Sidebar End -->
             <div class=" w-full page-wrapper xl:px-6 px-0">
                 <!-- Main Content -->
                 <main class="h-full  max-w-full">

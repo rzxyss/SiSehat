@@ -28,89 +28,56 @@
 
                 <li class="text-xs font-bold mb-4 mt-6">
                     <i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
-                    <span class="text-xs text-gray-400 font-semibold">UI COMPONENTS</span>
+                    <span class="text-xs text-gray-400 font-semibold">MASTER DATA</span>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
                         href="../components/buttons.html">
-                        <i class="ti ti-article ps-2 text-2xl"></i> <span>Buttons</span>
+                        <i class="fa fa-user-doctor ps-2 text-2xl"></i> <span>Dokter</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="../components/alerts.html">
-                        <i class="ti ti-alert-circle ps-2 text-2xl"></i> <span>Alerts</span>
+                        href="../components/buttons.html">
+                        <i class="fa fa-user-nurse ps-2 text-2xl"></i> <span>Apoteker</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="../components/cards.html">
-                        <i class="ti ti-cards ps-2 text-2xl"></i> <span>Card</span>
+                        href="../components/buttons.html">
+                        <i class="fa fa-hospital-user ps-2 text-2xl"></i> <span>Pasien</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="../components/forms.html">
-                        <i class="ti ti-file-description ps-2 text-2xl"></i> <span>Forms</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="../components/typography.html">
-                        <i class="ti ti-typography ps-2 text-2xl"></i> <span>Typography</span>
+                        href="../components/buttons.html">
+                        <i class="fa fa-pills ps-2 text-2xl"></i> <span>Obat</span>
                     </a>
                 </li>
 
                 <li class="text-xs font-bold mb-4 mt-8">
                     <i class="ti ti-dots nav-small-cap-icon  text-lg hidden text-center"></i>
-                    <span class="text-xs text-gray-400 font-semibold">AUTH</span>
+                    <span class="text-xs text-gray-400 font-semibold">CONTENT DATA</span>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
                         href="../pages/authentication-login.html">
-                        <i class="ti ti-login ps-2 text-2xl"></i> <span>Login</span>
+                        <i class="fa fa-newspaper ps-2 text-2xl"></i> <span>Blog</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
                         href="../pages/authentication-register.html">
-                        <i class="ti ti-user-plus ps-2 text-2xl"></i> <span>Register</span>
+                        <i class="fa fa-calendar-plus ps-2 text-2xl"></i> <span>Janji Temu Pasien</span>
                     </a>
                 </li>
-
-                <li class="text-xs font-bold mb-4 mt-8">
-                    <i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
-                    <span class="text-xs text-gray-400 font-semibold">EXTRA</span>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="../pages/icons.html">
-                        <i class="ti ti-mood-happy ps-2 text-2xl"></i> <span>Icons</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="../pages/sample-page.html">
-                        <i class="ti ti-aperture ps-2 text-2xl"></i> <span>Sample Page</span>
-                    </a>
-                </li>
-
             </ul>
         </nav>
     </div>
-
-    <!-- Bottom Upgrade Option -->
-    <div class="m-4  relative grid">
-        <button class="text-base font-semibold hover:bg-blue-700 btn">Upgrade to Pro</button>
-    </div>
-    <!-- </aside> -->
 </aside>
