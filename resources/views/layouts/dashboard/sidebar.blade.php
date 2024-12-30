@@ -5,7 +5,7 @@
     <!-- ---------------------------------- -->
     <div class="p-4">
 
-        <a href="/dashboard" class="text-nowrap">
+        <a href="{{route('dashboard.index')}}" class="text-nowrap">
             <img src="{{ asset('admin/images/logos/logo-light.svg') }}" alt="Logo-Dark" />
         </a>
 
@@ -53,8 +53,8 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="../components/buttons.html">
+                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ request()->is('dashboard.obat.*') ? 'active' : '' }}"
+                        href="{{route('dashboard.obat.index')}}">
                         <i class="fa fa-pills ps-2 text-2xl"></i> <span>Obat</span>
                     </a>
                 </li>

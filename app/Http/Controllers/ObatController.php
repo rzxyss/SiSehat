@@ -14,10 +14,10 @@ class ObatController extends Controller
      */
     public function index()
     {
-        $obat= Obat::all();
-        return view('admin.obat.index',compact('obat'));
+        $obat = Obat::all();
+        return view('admin.obat.index', compact('obat'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -48,9 +48,9 @@ class ObatController extends Controller
         ]);
 
         if ($obat) {
-            return redirect()->route('obat.index')->with('message', 'Obat Berhasil Ditambahkan!');
+            return redirect()->route('dashboard.obat.index')->with('message', 'Obat Berhasil Ditambahkan!');
         } else {
-            return redirect()->route('obat.tambah')->with('error', 'Terjadi Kesalahan Saat Menambahkan Obat!');
+            return redirect()->route('dashboard.obat.tambah')->with('error', 'Terjadi Kesalahan Saat Menambahkan Obat!');
         }
     }
 
@@ -96,9 +96,9 @@ class ObatController extends Controller
         ]);
 
         if ($obat) {
-            return redirect()->route('obat.index')->with('message', 'Obat Berhasil Ditambahkan!');
+            return redirect()->route('dashboard.obat.index')->with('message', 'Obat Berhasil Ditambahkan!');
         } else {
-            return redirect()->route('obat.edit')->with('error', 'Terjadi Kesalahan Saat Menambahkan Obat!');
+            return redirect()->route('dashboard.obat.edit')->with('error', 'Terjadi Kesalahan Saat Menambahkan Obat!');
         }
     }
 
@@ -109,6 +109,6 @@ class ObatController extends Controller
     {
         $obat = Obat::findOrFail($id);
         $obat->delete();
-        return redirect()->route('obat.index');
+        return redirect()->route('dashboard.obat.index');
     }
 }

@@ -20,23 +20,25 @@ Route::prefix('bmi')->name('bmi.')->group(function () {
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
 });
-Route::prefix('obat')->name('obat.')->group(function () {
-    Route::get('/', [ObatController::class, 'index'])->name('index');
-    Route::get('/tambah', [ObatController::class, 'create'])->name('tambah');
-    Route::post('/tambah', [ObatController::class, 'store'])->name('store');
-    Route::get('/edit/{id}', [ObatController::class, 'edit'])->name('edit');
-    Route::put('/edit/{id}', [ObatController::class, 'update'])->name('update');
-    Route::delete('/delete/{id}', [ObatController::class, 'destroy'])->name('destroy');
-});
-
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('/', function () {
+            return view('admin.dashboard');
+        })->name('index');
+        Route::prefix('obat')->name('obat.')->group(function () {
+            Route::get('/', [ObatController::class, 'index'])->name('index');
+            Route::get('/tambah', [ObatController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [ObatController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [ObatController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [ObatController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [ObatController::class, 'destroy'])->name('destroy');
+        });
+    });
 });
 
 require __DIR__ . '/auth.php';
