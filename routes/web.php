@@ -38,6 +38,14 @@ Route::middleware('auth')->group(function () {
             Route::put('/edit/{id}', [ObatController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [ObatController::class, 'destroy'])->name('destroy');
         });
+        Route::prefix('dokter')->name('dokter.')->group(function () {
+            Route::get('/', [DokterController::class, 'index'])->name('index');
+            Route::get('/tambah', [DokterController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [DokterController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [DokterController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [DokterController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [DokterController::class, 'destroy'])->name('destroy');
+        });
     });
 });
 

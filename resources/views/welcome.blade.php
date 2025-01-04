@@ -5,10 +5,10 @@
         <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56 font-montserrat">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
                 Sistem
-                Infromasi Kesehatan
+                Informasi Kesehatan
             </h1>
             <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Kini hadir website Sistem
-                Informasi Kesehatan untuk mencari infromasi tentang kesehatan dan juga untuk membuat jadwal temu dengan
+                Informasi Kesehatan untuk mencari informasi tentang kesehatan dan juga untuk membuat jadwal temu dengan
                 dokter.
             </p>
             <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
