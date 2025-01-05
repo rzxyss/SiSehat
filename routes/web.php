@@ -54,6 +54,14 @@ Route::middleware('auth')->group(function () {
             Route::put('/edit/{id}', [PasienController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [PasienController::class, 'destroy'])->name('destroy');
         });
+        Route::prefix('apoteker')->name('apoteker.')->group(function () {
+            Route::get('/', [ApotekerController::class, 'index'])->name('index');
+            Route::get('/tambah', [ApotekerController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [ApotekerController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [ApotekerController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [ApotekerController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [ApotekerController::class, 'destroy'])->name('destroy');
+        });
     });
 });
 
