@@ -46,6 +46,14 @@ Route::middleware('auth')->group(function () {
             Route::put('/edit/{id}', [DokterController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [DokterController::class, 'destroy'])->name('destroy');
         });
+        Route::prefix('pasien')->name('pasien.')->group(function () {
+            Route::get('/', [PasienController::class, 'index'])->name('index');
+            Route::get('/tambah', [PasienController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [PasienController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [PasienController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [PasienController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [PasienController::class, 'destroy'])->name('destroy');
+        });
     });
 });
 

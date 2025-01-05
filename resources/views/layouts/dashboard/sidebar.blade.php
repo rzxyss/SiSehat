@@ -47,7 +47,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="../components/buttons.html">
+                        href="{{route('dashboard.pasien.index')}}">
                         <i class="fa fa-hospital-user ps-2 text-2xl"></i> <span>Pasien</span>
                     </a>
                 </li>
