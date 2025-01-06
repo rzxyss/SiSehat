@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokter;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
@@ -16,7 +17,7 @@ class DokterController extends Controller
      */
     public function index()
     {
-        $dokter = Dokter::all();
+        $dokter = User::where('role', '=', 'dokter')->get();
         return view('admin.dokter.index', compact('dokter'));
     }
 
@@ -103,7 +104,7 @@ class DokterController extends Controller
             'gaji' => 'required'
         ]);
         
-        $dokter = Dokter::findOrFail($id);
+        $dokter = User::findOrFail($id);
         
         $dokter->update([
             'nama_dokter' => $request->input('nama_dokter'),
@@ -114,6 +115,7 @@ class DokterController extends Controller
             'no_telp' => $request->input('no_telp'),
             'spesialis' => $request->input('spesialis'),
             'jadwal_praktik' => $request->input('jadwal_praktik'),
+            'role' => 'dokter',
             'gaji' => $request->input('gaji')
         ]);
 
