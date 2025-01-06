@@ -9,12 +9,12 @@
 
             <!-- Email Address -->
             <div>
-                <x-input-label for="email" :value="__('Email')" class="block text-sm font-medium text-gray-700 mb-1" />
-                <x-text-input id="email"
+                <x-input-label for="username" :value="__('Username')" class="block text-sm font-medium text-gray-700 mb-1" />
+                <x-text-input id="username"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
-                    type="email" name="email" :value="old('email')" required autofocus autocomplete="username"
-                    placeholder="Masukan email" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    type="text" name="username" :value="old('username')" required autofocus autocomplete="username"
+                    placeholder="Masukan username" />
+                <x-input-error :messages="$errors->get('username')" class="mt-2" />
             </div>
 
             <!-- Password -->
