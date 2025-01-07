@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('home')
-    <section
-        class="bg-center bg-cover bg-no-repeat bg-[url('{{ asset('assets/image/hero.jpg') }}')] bg-gray-600 bg-blend-multiply">
+    <section class="bg-center bg-cover bg-no-repeat bg-gray-600 bg-blend-multiply"
+        style="background-image: url('{{ asset('assets/image/hero.jpg') }}');">
         <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56 font-montserrat">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
                 Sistem
