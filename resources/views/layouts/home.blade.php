@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="about"
                             class="block py-2 px-3 transition-colors md:p-0 {{ request()->is('about*') ? 'text-primary font-semibold' : 'text-gray-900 hover:text-primary' }}">
                             Tentang Kami
                         </a>
