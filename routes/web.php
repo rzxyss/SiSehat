@@ -11,7 +11,10 @@ use App\Http\Controllers\ObatController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+})->name('home');
+Route::get('about-us', function () {
+    return view('about');
 })->name('home');
 Route::prefix('bmi')->name('bmi.')->group(function () {
     Route::get('/', [BmiController::class, 'index'])->name('index');
