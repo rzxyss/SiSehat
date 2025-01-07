@@ -15,7 +15,7 @@ Route::get('/', function () {
 })->name('home');
 Route::get('about-us', function () {
     return view('about');
-})->name('home');
+})->name('about');
 Route::prefix('bmi')->name('bmi.')->group(function () {
     Route::get('/', [BmiController::class, 'index'])->name('index');
     Route::post('/hitung', [BmiController::class, 'hitung'])->name('hitung');
