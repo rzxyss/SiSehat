@@ -7,10 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-
-    <!-- Scripts -->
+    <link rel="shortcut icon" href="{{ asset('assets/image/logo/sisehat.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="//unpkg.com/alpinejs" defer></script>
 </head>
@@ -19,7 +16,7 @@
     <nav class="sticky top-0 bg-white shadow-md border-gray-200 z-50">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center">
-                <span class="text-2xl font-bold text-primary">SiSehat</span>
+                <img src="{{ asset('assets/image/logo/sisehat2.png') }}" style="width: 120px; height: auto;">
             </a>
 
             <button data-collapse-toggle="navbar-menu" type="button"
@@ -55,7 +52,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="about"
+                        <a href="{{ route('about') }}"
                             class="block py-2 px-3 transition-colors md:p-0 {{ request()->is('about*') ? 'text-primary font-semibold' : 'text-gray-900 hover:text-primary' }}">
                             Tentang Kami
                         </a>
@@ -87,35 +84,10 @@
         </div>
     </nav>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const button = document.querySelector('[data-collapse-toggle="navbar-menu"]');
-            const menu = document.getElementById('navbar-menu');
-            const auth = document.getElementById('navbar-auth');
-
-            button.addEventListener('click', function() {
-                menu.classList.toggle('hidden');
-                auth.classList.toggle('hidden');
-            });
-        });
-    </script>
-
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         @yield('home')
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const button = document.querySelector('[data-collapse-toggle="navbar-menu"]');
-            const menu = document.getElementById('navbar-menu');
-            const auth = document.getElementById('navbar-auth');
-
-            button.addEventListener('click', function() {
-                menu.classList.toggle('hidden');
-                auth.classList.toggle('hidden');
-            });
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     @yield('js')
 </body>
 
