@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dokter;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
 
@@ -37,28 +39,29 @@ class DokterController extends Controller
     {
 
         $this->validate($request, [
-            'nama_dokter' => 'required',
+            'nama' => 'required',
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'alamat' => 'required',
+            'username' => 'required',
+            'telp' => 'required',
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
-            'email' => 'required',
-            'no_telp' => 'required',
             'spesialis' => 'required',
-            'jadwal_praktik' => 'required',
-            'gaji' => 'required'
+            'password' => ['required', Rules\Password::defaults()]
         ]);
         
         
-        $dokter = Dokter::create([
-            'nama_dokter' => $request->input('nama_dokter'),
-            'alamat' => $request->input('alamat'),
-            'jenis_kelamin' => $request->input('jenis_kelamin'),
-            'tanggal_lahir' => $request->input('tanggal_lahir'),
+        $dokter = User::create([
+            'name' => $request->input('nama'),
             'email' => $request->input('email'),
-            'no_telp' => $request->input('no_telp'),
+            'alamat' => $request->input('alamat'),
+            'username' => $request->input('username'),
+            'no_telp' => $request->input('telp'),
+            'jenis_kelamin' => $request->input('jenis_kelamin'),
             'spesialis' => $request->input('spesialis'),
-            'jadwal_praktik' => $request->input('jadwal_praktik'),
-            'gaji' => $request->input('gaji')
+            'tanggal_lahir' => Carbon::parse($request->input('tanggal_lahir'))->format('Y-m-d'),
+            'password' => Hash::make($request->input('password')),
+            'role' => 'dokter'
         ]);
 
         if ($dokter) {
