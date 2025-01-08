@@ -61,6 +61,7 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-4">
+                @if (Auth::user() == null)
                 <a href="/login"
                     class="px-6 py-2 text-primary border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
                     Login
@@ -69,6 +70,14 @@
                     class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-shade1 transition-colors">
                     Registrasi
                 </a>
+                @else
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <button type="submit"
+                        class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-shade1 transition-colors">Logout</button>
+                </form>
+                @endif
             </div>
 
             <div class="md:hidden w-full mt-4 hidden" id="navbar-auth">
@@ -87,6 +96,15 @@
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         @yield('home')
     </div>
+    <footer class="w-full text-black p-2 absolute fixed-bottom">
+        <div class="container mx-auto text-center text-sm">
+            <p>
+                <span class="text-slate-500 font-semibold">{{ \Carbon\Carbon::now()->translatedFormat('Y') }}&copy;
+                </span>
+                Sisehat.
+            </p>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     @yield('js')
 </body>
