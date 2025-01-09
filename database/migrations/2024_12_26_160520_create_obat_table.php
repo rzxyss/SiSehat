@@ -18,6 +18,7 @@ return new class extends Migration
             $table->float('harga');
             $table->integer('stok');
             $table->date('expired');
+            $table->string('foto');
             $table->timestamps();
         });
     }

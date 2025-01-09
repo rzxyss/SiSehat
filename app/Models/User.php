@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'username',
         'tanggal_lahir',
-        'no_telp',
+        'telp',
         'alamat',
         'email',
         'password',

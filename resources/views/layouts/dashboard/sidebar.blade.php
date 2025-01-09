@@ -21,7 +21,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base  flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="../index.html">
+                        href="#">
                         <i class="ti ti-layout-dashboard ps-2  text-2xl"></i> <span>Dashboard</span>
                     </a>
                 </li>
@@ -33,22 +33,8 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="{{route('dashboard.dokter.index')}}">
-                        <i class="fa fa-user-doctor ps-2 text-2xl"></i> <span>Dokter</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="{{route('dashboard.apoteker.index')}}">
-                        <i class="fa fa-user-nurse ps-2 text-2xl"></i> <span>Apoteker</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="{{route('dashboard.pasien.index')}}">
-                        <i class="fa fa-hospital-user ps-2 text-2xl"></i> <span>Pasien</span>
+                        href="#">
+                        <i class="fa fa-user-doctor ps-2 text-2xl"></i> <span>Akun</span>
                     </a>
                 </li>
 
@@ -66,14 +52,14 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="../pages/authentication-login.html">
+                        href="#">
                         <i class="fa fa-newspaper ps-2 text-2xl"></i> <span>Blog</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="../pages/authentication-register.html">
+                        href="#">
                         <i class="fa fa-calendar-plus ps-2 text-2xl"></i> <span>Janji Temu Pasien</span>
                     </a>
                 </li>

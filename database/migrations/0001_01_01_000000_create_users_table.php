@@ -15,6 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('username')->unique();
+            $table->string('telp', 13);
+            $table->enum('jenis_kelamin', ['l', 'p']);
+            $table->date('tanggal_lahir')->nullable();
+            $table->text('alamat')->nullable();
+            $table->enum('spesialis', ['pu', 'pg', 'pk', 'ppd'])->nullable();
             $table->enum('role', ['admin', 'dokter', 'pasien', 'apoteker'])->default('pasien');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

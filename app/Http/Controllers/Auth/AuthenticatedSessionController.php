@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
         $url = "dashboard";
 
         if (Auth::user()->role != 'pasien') {
-            return redirect()->intended($url);
+            return redirect(route('dashboard.index'));
         } else {
             return redirect(route('home'));
         }
