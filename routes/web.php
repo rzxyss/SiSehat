@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BmiController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AkunController;
 use App\Http\Controllers\ObatController;
+use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,10 +27,23 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::prefix('pdash')->name('pdash.')->group(function () {
+        Route::get('/', [PasienController::class, 'dashboard'])->name('index');
+    });
+
     Route::middleware('role:admin,apoteker,dokter')->prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/', function () {
-            return view('admin.dashboard');
+            $title = 'Dashboard';
+            return view('admin.dashboard', compact('title'));
         })->name('index');
+        Route::prefix('akun')->name('akun.')->group(function () {
+            Route::get('/', [AkunController::class, 'index'])->name('index');
+            Route::get('/tambah', [AkunController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [AkunController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [AkunController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [AkunController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [AkunController::class, 'destroy'])->name('destroy');
+        });
         Route::prefix('obat')->name('obat.')->group(function () {
             Route::get('/', [ObatController::class, 'index'])->name('index');
             Route::get('/tambah', [ObatController::class, 'create'])->name('tambah');
