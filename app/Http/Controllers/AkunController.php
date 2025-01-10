@@ -44,7 +44,8 @@ class AkunController extends Controller
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
             'spesialis' => 'required',
-            'password' => ['required', Rules\Password::defaults()]
+            'password' => ['required', Rules\Password::defaults()],
+            'role' => 'required'
         ]);
 
 
@@ -58,7 +59,7 @@ class AkunController extends Controller
             'spesialis' => $request->input('spesialis'),
             'tanggal_lahir' => Carbon::parse($request->input('tanggal_lahir'))->format('Y-m-d'),
             'password' => Hash::make($request->input('password')),
-            'role' => 'akun'
+            'role' => $request->input('role')
         ]);
         if ($akun) {
             return redirect()->route('dashboard.akun.index')->with('message', 'akun Berhasil Ditambahkan!');
@@ -85,7 +86,8 @@ class AkunController extends Controller
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
             'spesialis' => 'required',
-            'password' => ['nullable', 'string']
+            'password' => ['nullable', 'string'],
+            'role' => 'required'
         ]);
 
         $akun = User::findOrFail($id);
@@ -101,6 +103,7 @@ class AkunController extends Controller
                 'spesialis' => $request->input('spesialis'),
                 'tanggal_lahir' => Carbon::parse($request->input('tanggal_lahir'))->format('Y-m-d'),
                 'password' => Hash::make($request->input('password')),
+                'role' => $request->input('role')
             ]);
             if ($akun) {
                 return redirect()->route('dashboard.akun.index')->with('message', 'akun Berhasil Ditambahkan!');
@@ -117,6 +120,7 @@ class AkunController extends Controller
                 'jenis_kelamin' => $request->input('jenis_kelamin'),
                 'spesialis' => $request->input('spesialis'),
                 'tanggal_lahir' => Carbon::parse($request->input('tanggal_lahir'))->format('Y-m-d'),
+                'role' => $request->input('role')
             ]);
             if ($akun) {
                 return redirect()->route('dashboard.akun.index')->with('message', 'akun Berhasil Ditambahkan!');
