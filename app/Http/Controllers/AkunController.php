@@ -36,7 +36,7 @@ class AkunController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama' => 'required',
+            'name' => 'required',
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'alamat' => 'required',
             'username' => 'required',
@@ -48,13 +48,13 @@ class AkunController extends Controller
             'role' => 'required'
         ]);
 
-
+ 
         $akun = User::create([
-            'name' => $request->input('nama'),
+            'name' => $request->input('name'),
             'email' => $request->input('email'),
             'alamat' => $request->input('alamat'),
             'username' => $request->input('username'),
-            'no_telp' => $request->input('telp'),
+            'telp' => $request->input('telp'),
             'jenis_kelamin' => $request->input('jenis_kelamin'),
             'spesialis' => $request->input('spesialis'),
             'tanggal_lahir' => Carbon::parse($request->input('tanggal_lahir'))->format('Y-m-d'),

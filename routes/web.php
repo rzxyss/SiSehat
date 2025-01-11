@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BmiController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AkunController;
+use App\Http\Controllers\JadwalPraktikController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,14 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{id}', [ObatController::class, 'edit'])->name('edit');
             Route::put('/edit/{id}', [ObatController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [ObatController::class, 'destroy'])->name('destroy');
+        });
+        Route::prefix('jadwal')->name('jadwal.')->group(function () {
+            Route::get('/', [JadwalPraktikController::class, 'index'])->name('index');
+            Route::get('/tambah', [JadwalPraktikController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [JadwalPraktikController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [JadwalPraktikController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [JadwalPraktikController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [JadwalPraktikController::class, 'destroy'])->name('destroy');
         });
     });
 });

@@ -60,6 +60,12 @@
                         <i class="fa fa-calendar-plus ps-2 text-2xl"></i> <span>Janji Temu Pasien</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
+                        href="{{route('dashboard.jadwal.index')}}">
+                        <i class="fa fa-calendar-plus ps-2 text-2xl"></i> <span>Jadwal Praktik Dokter</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

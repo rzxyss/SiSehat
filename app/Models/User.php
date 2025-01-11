@@ -25,6 +25,8 @@ class User extends Authenticatable
         'alamat',
         'email',
         'password',
+        'spesialis',
+        'jenis_kelamin',
         'role',
     ];
 
@@ -49,5 +51,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function JadwalDokter()
+    {
+        return $this->hasMany(JadwalPraktik::class, 'id');
     }
 }

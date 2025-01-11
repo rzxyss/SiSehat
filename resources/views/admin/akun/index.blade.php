@@ -3,7 +3,7 @@
 @section('content')
 <a href="{{ route('dashboard.akun.tambah') }}"
     class="py-2 px-6 btn text-xs bg-yellow-600 text-white hover:bg-yellow-700 ">
-    Tambah Dokter
+    Tambah Akun
 </a>
 <div class="relative overflow-x-auto">
     <!-- table -->
@@ -46,8 +46,16 @@
                     <h3 class="font-medium">-</h3>
                     @endif
                 </td>
-                <td class="p-4">
+                <td class="flex flex-row gap-1 items-center p-4">
                     <a href="{{route('dashboard.akun.edit', $d->id)}}" class="py-2 px-6 btn btn-dark text-xs">Edit</a>
+                    <form method="POST" action="{{ route('dashboard.akun.destroy', $d->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="py-2 px-6 btn text-xs bg-red-600 text-white hover:bg-red-700 ">
+                                    Hapus
+                                </button>
+                            </form>
                 </td>
             </tr>
             @endforeach
