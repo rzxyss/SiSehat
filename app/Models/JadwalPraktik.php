@@ -11,7 +11,7 @@ class JadwalPraktik extends Model
     protected $table = 'jadwal_praktik';
     protected $fillable = [
         'tanggal',
-        'Jam_mulai',
+        'jam_mulai',
         'jam_selesai',
         'id_dokter',
     ];

@@ -27,7 +27,6 @@
             <option value="" disabled selected>Pilih Dokter</option>
             @foreach ($dokter as $d)
             <option value="{{$d->id}}">{{$d->name}}</option>
-            
             @endforeach
         </select>
     </div>
