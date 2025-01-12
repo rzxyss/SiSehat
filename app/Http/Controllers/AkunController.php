@@ -78,7 +78,7 @@ class AkunController extends Controller
     public function update(Request $request, string $id)
     {
         $this->validate($request, [
-            'nama' => 'required',
+            'name' => 'required',
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
             'alamat' => 'required',
             'username' => 'required',
@@ -94,7 +94,7 @@ class AkunController extends Controller
 
         if ($request->input('password') != null) {
             $akun->update([
-                'name' => $request->input('nama'),
+                'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'alamat' => $request->input('alamat'),
                 'username' => $request->input('username'),
@@ -112,7 +112,7 @@ class AkunController extends Controller
             }
         } else {
             $akun->update([
-                'name' => $request->input('nama'),
+                'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'alamat' => $request->input('alamat'),
                 'username' => $request->input('username'),
