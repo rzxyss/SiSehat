@@ -6,6 +6,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\JadwalPraktikController;
 use App\Http\Controllers\ObatController;
+use App\Http\Controllers\GajiController;
 use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +61,14 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{id}', [JadwalPraktikController::class, 'edit'])->name('edit');
             Route::put('/edit/{id}', [JadwalPraktikController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [JadwalPraktikController::class, 'destroy'])->name('destroy');
+        });
+        Route::prefix('gaji')->name('gaji.')->group(function () {
+            Route::get('/', [GajiController::class, 'index'])->name('index');
+            Route::get('/tambah', [GajiController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [GajiController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [GajiController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [GajiController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [GajiController::class, 'destroy'])->name('destroy');
         });
     });
 });
