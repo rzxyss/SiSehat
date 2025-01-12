@@ -31,7 +31,7 @@
                     <h3 class="font-medium">{{ $d->jam_mulai }}</h3>
                 </td>
                 <td class="p-4">
-                    <h3 class="font-medium">Rp. {{ $d->jam_selesai }}</h3>
+                    <h3 class="font-medium">{{ $d->jam_selesai }}</h3>
                 </td>
                 <td class="p-4">
                     <h3 class="font-medium">{{ $d->id_dokter }}</h3>

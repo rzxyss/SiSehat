@@ -71,9 +71,10 @@ class JadwalPraktikController extends Controller
     public function edit(string $id)
     {
         $jadwal = JadwalPraktik::findOrFail($id);
+        $dokter = User::where('role','=','dokter')->get();
         $title = 'Update Jadwal';
 
-        return view('admin.jadwal.edit', compact('jadwal', 'title'));
+        return view('admin.jadwal.edit', compact('jadwal', 'title','dokter'));
     }
 
     /**
