@@ -5,6 +5,7 @@ use App\Http\Controllers\BmiController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\JadwalPraktikController;
+use App\Http\Controllers\JanjiTemuController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\GajiController;
 use App\Http\Controllers\PasienController;
@@ -69,6 +70,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{id}', [GajiController::class, 'edit'])->name('edit');
             Route::put('/edit/{id}', [GajiController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [GajiController::class, 'destroy'])->name('destroy');
+        });
+        Route::prefix('janji')->name('janji.')->group(function () {
+            Route::get('/', [JanjiTemuController::class, 'index'])->name('index');
+            Route::get('/tambah', [JanjiTemuController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [JanjiTemuController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [JanjiTemuController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [JanjiTemuController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [JanjiTemuController::class, 'destroy'])->name('destroy');
+            Route::get('/detail/{id}', [JanjiTemuController::class, 'show'])->name('detail');
         });
     });
 });

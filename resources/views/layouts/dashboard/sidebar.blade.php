@@ -34,7 +34,6 @@
                         <i class="fa fa-user-doctor ps-2 text-2xl"></i> <span>Akun</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ request()->is('dashboard.obat.*') ? 'active' : '' }}"
                         href="{{route('dashboard.obat.index')}}">
@@ -44,7 +43,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
                         href="{{route('dashboard.gaji.index')}}">
-                        <i class="fa fa-user-doctor ps-2 text-2xl"></i> <span>Gaji</span>
+                        <i class="fa fa-usd ps-2 text-2xl"></i> <span>Gaji</span>
                     </a>
                 </li>
 
@@ -62,7 +61,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
-                        href="#">
+                    href="{{route('dashboard.janji.index')}}">
                         <i class="fa fa-calendar-plus ps-2 text-2xl"></i> <span>Janji Temu Pasien</span>
                     </a>
                 </li>
