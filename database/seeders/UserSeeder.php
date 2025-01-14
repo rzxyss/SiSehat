@@ -17,29 +17,38 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('admin'),
-            'role' => 'admin'
+            'username' => 'admin',
+            'telp' => '111111111111',
+            'jenis_kelamin' => 'l',
+            'tanggal_lahir' => '2000-01-01',
+            'alamat' => 'Bandung',
+            'role' => 'admin',
+            'password' => Hash::make('admin')
         ]);
 
         User::create([
             'name' => 'Dokter',
             'email' => 'dokter@gmail.com',
-            'password' => Hash::make('dokter'),
-            'role' => 'dokter'
+            'username' => 'dokter',
+            'telp' => '222222222222',
+            'jenis_kelamin' => 'p',
+            'tanggal_lahir' => '2000-01-01',
+            'alamat' => 'Bandung',
+            'role' => 'dokter',
+            'spesialis' => 'pu',
+            'password' => Hash::make('admin')
         ]);
 
         User::create([
             'name' => 'Apoteker',
             'email' => 'apoteker@gmail.com',
-            'password' => Hash::make('apoteker'),
-            'role' => 'apoteker'
-        ]);
-
-        User::create([
-            'name' => 'Pasien',
-            'email' => 'pasien@gmail.com',
-            'password' => Hash::make('pasien'),
-            'role' => 'pasien'
+            'username' => 'apoteker',
+            'telp' => '333333333333',
+            'jenis_kelamin' => 'l',
+            'tanggal_lahir' => '2000-01-01',
+            'alamat' => 'Bandung',
+            'role' => 'apoteker',
+            'password' => Hash::make('apoteker')
         ]);
     }
 }

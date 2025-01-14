@@ -15,7 +15,8 @@ class ObatController extends Controller
     public function index()
     {
         $obat = Obat::all();
-        return view('admin.obat.index', compact('obat'));
+        $title = 'Obat';
+        return view('admin.obat.index', compact('obat', 'title'));
     }
 
     /**
@@ -23,7 +24,8 @@ class ObatController extends Controller
      */
     public function create()
     {
-        return view('admin.obat.create');
+        $title = 'Tambah Obat';
+        return view('admin.obat.create', compact('title'));
     }
 
     /**
@@ -36,15 +38,20 @@ class ObatController extends Controller
             'harga' => 'required',
             'deskripsi' => 'required',
             'stok' => 'required',
-            'expired' => 'required'
+            'expired' => 'required',
+            'foto' => 'required'
         ]);
+
+        $imageName = time() . '.' . $request->foto->getClientOriginalExtension();
+        $request->foto->move(public_path('assets/image/obat'), $imageName);
 
         $obat = Obat::create([
             'nama_obat' => $request->input('nama_obat'),
             'harga' => $request->input('harga'),
             'deskripsi' => $request->input('deskripsi'),
             'stok' => $request->input('stok'),
-            'expired' => $request->input('expired')
+            'expired' => $request->input('expired'),
+            'foto' => $imageName
         ]);
 
         if ($obat) {
@@ -68,8 +75,9 @@ class ObatController extends Controller
     public function edit(string $id)
     {
         $obat = Obat::findOrFail($id);
+        $title = 'Update Obat';
 
-        return view('admin.obat.edit', compact('obat'));
+        return view('admin.obat.edit', compact('obat', 'title'));
     }
 
     /**
@@ -82,18 +90,38 @@ class ObatController extends Controller
             'harga' => 'required',
             'deskripsi' => 'required',
             'stok' => 'required',
-            'expired' => 'required'
+            'expired' => 'required',
+            'foto' => 'nullable'
         ]);
 
         $obat = Obat::findOrFail($id);
 
-        $obat->update([
-            'nama_obat' => $request->input('nama_obat'),
-            'harga' => $request->input('harga'),
-            'deskripsi' => $request->input('deskripsi'),
-            'stok' => $request->input('stok'),
-            'expired' => $request->input('expired')
-        ]);
+        if ($request->hasFile('foto')) {
+            $imageName = time() . '.' . $request->foto->getClientOriginalExtension();
+            $imagePath = public_path('assets/image/obat/' . $obat->foto);
+            if (file_exists($imagePath) && !is_dir($imagePath)) {
+                unlink($imagePath);
+            }
+            $request->foto->move(public_path('assets/image/obat'), $imageName);
+            $obat->update([
+                'nama_obat' => $request->input('nama_obat'),
+                'harga' => $request->input('harga'),
+                'deskripsi' => $request->input('deskripsi'),
+                'stok' => $request->input('stok'),
+                'expired' => $request->input('expired'),
+                'foto' => $imageName
+            ]);
+        } else {
+            $obat->update([
+                'nama_obat' => $request->input('nama_obat'),
+                'harga' => $request->input('harga'),
+                'deskripsi' => $request->input('deskripsi'),
+                'stok' => $request->input('stok'),
+                'expired' => $request->input('expired')
+            ]);
+        }
+
+
 
         if ($obat) {
             return redirect()->route('dashboard.obat.index')->with('message', 'Obat Berhasil Ditambahkan!');
@@ -108,6 +136,10 @@ class ObatController extends Controller
     public function destroy(string $id)
     {
         $obat = Obat::findOrFail($id);
+        $imagePath = public_path('assets/image/obat/' . $obat->foto);
+        if (file_exists($imagePath) && !is_dir($imagePath)) {
+            unlink($imagePath);
+        }
         $obat->delete();
         return redirect()->route('dashboard.obat.index');
     }

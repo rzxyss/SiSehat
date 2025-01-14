@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.app')
 @section('content')
-<form method="POST" action="{{ route('dashboard.obat.update', $obat->id) }}">
+<form method="POST" action="{{ route('dashboard.obat.update', $obat->id) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-6">
@@ -32,6 +32,12 @@
         <input type="date"
             class="py-3 px-4 text-gray-500 block w-full border-gray-200 rounded-sm text-sm focus:border-blue-600 focus:ring-0 "
             name="expired" value="{{ $obat->expired }}">
+    </div>
+    <div class="mb-6">
+        <label class="block text-sm mb-2 text-gray-400">Foto Obat</label>
+        <input type="file"
+            class="py-3 px-4 text-gray-500 block w-full border-gray-200 rounded-sm text-sm focus:border-blue-600 focus:ring-0 "
+            name="foto">
     </div>
     <button type="submit" class="btn text-base py-2.5 text-white font-medium w-fit hover:bg-blue-700">Submit</button>
 </form>

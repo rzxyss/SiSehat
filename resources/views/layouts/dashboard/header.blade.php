@@ -9,7 +9,7 @@
                 </a>
             </li>
             <li>
-                <h1>Header</h1>
+                <h1 class="font-montserrat font-semibold">{{$title}}</h1>
             </li>
         </ul>
         <div class="flex items-center gap-4">

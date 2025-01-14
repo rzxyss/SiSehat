@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('apoteker', function (Blueprint $table) {
+        Schema::create('jadwal_praktik', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_apoteker');
-            $table->string('no_telepon');
-            $table->string('email');
+            $table->date('tanggal');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
+            $table->unsignedBigInteger('id_dokter');
+            $table->foreign('id_dokter')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('apoteker');
+        Schema::dropIfExists('jadwal_praktik');
     }
 };

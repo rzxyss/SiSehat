@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('home')
-    <div class="bg-gray-50 min-h-screen py-12">
+    <div class="bg-gray-50 min-h-screen w-full py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header -->
             <div class="text-center mb-12">
@@ -13,66 +13,84 @@
             <!-- Search and Categories -->
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
                 <div class="w-full md:w-64">
-                    <form class="relative">
-                        <input type="text" placeholder="Cari artikel..."
-                            class="w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-primary focus:border-primary">
-                        <button type="submit" class="absolute right-3 top-2.5">
-                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </button>
+                    <form class="relative" method="GET" action="{{ route('blog.index') }}" id="searchForm">
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari artikel..."
+                            class="w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-primary focus:border-primary"
+                            oninput="debouncedSubmit();">
                     </form>
-                </div>
-                <div class="flex gap-2 overflow-x-auto">
-                    <a href="#" class="px-4 py-2 bg-primary text-white rounded-full hover:bg-shade1">Semua</a>
-                    <a href="#" class="px-4 py-2 bg-white text-gray-700 rounded-full hover:bg-gray-100">Nutrisi</a>
-                    <a href="#" class="px-4 py-2 bg-white text-gray-700 rounded-full hover:bg-gray-100">Olahraga</a>
-                    <a href="#" class="px-4 py-2 bg-white text-gray-700 rounded-full hover:bg-gray-100">Mental</a>
                 </div>
             </div>
 
             <!-- Blog Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @for ($i = 1; $i <= 6; $i++)
+                @foreach ($blog as $b)
                     <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                        <img src="https://source.unsplash.com/random/800x600/?health,{{ $i }}"
-                            alt="Blog thumbnail" class="w-full h-48 object-cover">
+                        <img src="{{ asset('assets/image/blog/' . $b->thumbnail) }}" alt="Blog thumbnail"
+                            class="w-full h-48 object-cover">
                         <div class="p-6">
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Nutrisi</span>
-                                <span class="text-gray-500 text-sm">5 menit baca</span>
-                            </div>
                             <h2 class="text-xl font-semibold mb-2 hover:text-primary">
-                                <a href="#">Tips Menjaga Pola Makan Sehat di Masa Pandemi</a>
+                                <a href="#">{{ $b->title }}</a>
                             </h2>
                             <p class="text-gray-600 mb-4 line-clamp-2">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua.
+                                {{ nl2br($b->content) }}
                             </p>
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-2">
-                                    <img src="https://source.unsplash.com/random/100x100/?face" alt="Author"
+                                    <img src="{{ asset('assets/image/profile/profile.jpg') }}" alt="Author"
                                         class="w-8 h-8 rounded-full">
-                                    <span class="text-sm text-gray-700">Dr. John Doe</span>
+                                    <span class="text-sm text-gray-700">{{ $b->author->name }}</span>
                                 </div>
                                 <span class="text-sm text-gray-500">2 hari yang lalu</span>
                             </div>
                         </div>
                     </article>
-                @endfor
+                @endforeach
             </div>
 
             <!-- Pagination -->
             <div class="mt-12 flex justify-center">
                 <nav class="flex items-center gap-2">
-                    <a href="#" class="px-4 py-2 bg-white border rounded-lg hover:bg-gray-50">&laquo; Previous</a>
-                    <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg">1</a>
-                    <a href="#" class="px-4 py-2 bg-white border rounded-lg hover:bg-gray-50">2</a>
-                    <a href="#" class="px-4 py-2 bg-white border rounded-lg hover:bg-gray-50">3</a>
-                    <a href="#" class="px-4 py-2 bg-white border rounded-lg hover:bg-gray-50">Next &raquo;</a>
+                    {{-- Tombol Previous --}}
+                    @if ($blog->onFirstPage())
+                        <span class="px-4 py-2 bg-gray-200 border rounded-lg text-gray-400 cursor-not-allowed">&laquo;
+                            Previous</span>
+                    @else
+                        <a href="{{ $blog->previousPageUrl() }}"
+                            class="px-4 py-2 bg-white border rounded-lg hover:bg-gray-50">&laquo; Previous</a>
+                    @endif
+
+                    {{-- Tombol Angka Halaman --}}
+                    @foreach ($blog->getUrlRange(1, $blog->lastPage()) as $page => $url)
+                        @if ($page == $blog->currentPage())
+                            <span class="px-4 py-2 bg-primary text-white rounded-lg">{{ $page }}</span>
+                        @else
+                            <a href="{{ $url }}"
+                                class="px-4 py-2 bg-white border rounded-lg hover:bg-gray-50">{{ $page }}</a>
+                        @endif
+                    @endforeach
+
+                    {{-- Tombol Next --}}
+                    @if ($blog->hasMorePages())
+                        <a href="{{ $blog->nextPageUrl() }}"
+                            class="px-4 py-2 bg-white border rounded-lg hover:bg-gray-50">Next &raquo;</a>
+                    @else
+                        <span class="px-4 py-2 bg-gray-200 border rounded-lg text-gray-400 cursor-not-allowed">Next
+                            &raquo;</span>
+                    @endif
                 </nav>
             </div>
+
         </div>
     </div>
+
+    <script>
+        let debounceTimer;
+
+        function debouncedSubmit() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                document.getElementById('searchForm').submit();
+            }, 500); // Tunggu 500ms sebelum submit
+        }
+    </script>
 @endsection

@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255'],
-            'no_telp' => ['required', 'string', 'max:255'],
+            'telp' => ['required', 'string', 'max:255'],
             'tanggal_lahir' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
@@ -42,17 +42,17 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
-            'no_telp' => $request->no_telp,
+            'telp' => $request->telp,
             'tanggal_lahir' => $request->tanggal_lahir,
             'alamat' => $request->alamat,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password)
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('/', absolute: false));
+        return redirect(route('home', absolute: false));
     }
 }

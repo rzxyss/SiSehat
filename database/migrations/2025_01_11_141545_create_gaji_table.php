@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('obat', function (Blueprint $table) {
+        Schema::create('gaji', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_obat');
-            $table->string('deskripsi');
-            $table->float('harga');
-            $table->integer('stok');
-            $table->date('expired');
-            $table->string('foto');
+            $table->unsignedBigInteger('id_dokter');
+            $table->foreign('id_dokter')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
+            $table->date('tanggal_ambil')->nullable();
+            $table->decimal('gaji', 15, 2);
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('obat');
+        Schema::dropIfExists('gaji');
     }
 };

@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ApotekerController;
-use App\Http\Controllers\DokterController;
-use App\Http\Controllers\PasienController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BmiController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AkunController;
+use App\Http\Controllers\JadwalPraktikController;
+use App\Http\Controllers\JanjiTemuController;
 use App\Http\Controllers\ObatController;
+use App\Http\Controllers\GajiController;
+use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,10 +30,23 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+    Route::prefix('pdash')->name('pdash.')->group(function () {
+        Route::get('/', [PasienController::class, 'dashboard'])->name('index');
+    });
+
+    Route::middleware('role:admin,apoteker,dokter')->prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/', function () {
-            return view('admin.dashboard');
+            $title = 'Dashboard';
+            return view('admin.dashboard', compact('title'));
         })->name('index');
+        Route::prefix('akun')->name('akun.')->group(function () {
+            Route::get('/', [AkunController::class, 'index'])->name('index');
+            Route::get('/tambah', [AkunController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [AkunController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [AkunController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [AkunController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [AkunController::class, 'destroy'])->name('destroy');
+        });
         Route::prefix('obat')->name('obat.')->group(function () {
             Route::get('/', [ObatController::class, 'index'])->name('index');
             Route::get('/tambah', [ObatController::class, 'create'])->name('tambah');
@@ -41,29 +55,39 @@ Route::middleware('auth')->group(function () {
             Route::put('/edit/{id}', [ObatController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [ObatController::class, 'destroy'])->name('destroy');
         });
-        Route::prefix('dokter')->name('dokter.')->group(function () {
-            Route::get('/', [DokterController::class, 'index'])->name('index');
-            Route::get('/tambah', [DokterController::class, 'create'])->name('tambah');
-            Route::post('/tambah', [DokterController::class, 'store'])->name('store');
-            Route::get('/edit/{id}', [DokterController::class, 'edit'])->name('edit');
-            Route::put('/edit/{id}', [DokterController::class, 'update'])->name('update');
-            Route::delete('/delete/{id}', [DokterController::class, 'destroy'])->name('destroy');
+        Route::prefix('jadwal')->name('jadwal.')->group(function () {
+            Route::get('/', [JadwalPraktikController::class, 'index'])->name('index');
+            Route::get('/tambah', [JadwalPraktikController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [JadwalPraktikController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [JadwalPraktikController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [JadwalPraktikController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [JadwalPraktikController::class, 'destroy'])->name('destroy');
         });
-        Route::prefix('pasien')->name('pasien.')->group(function () {
-            Route::get('/', [PasienController::class, 'index'])->name('index');
-            Route::get('/tambah', [PasienController::class, 'create'])->name('tambah');
-            Route::post('/tambah', [PasienController::class, 'store'])->name('store');
-            Route::get('/edit/{id}', [PasienController::class, 'edit'])->name('edit');
-            Route::put('/edit/{id}', [PasienController::class, 'update'])->name('update');
-            Route::delete('/delete/{id}', [PasienController::class, 'destroy'])->name('destroy');
+        Route::prefix('gaji')->name('gaji.')->group(function () {
+            Route::get('/', [GajiController::class, 'index'])->name('index');
+            Route::get('/tambah', [GajiController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [GajiController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [GajiController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [GajiController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [GajiController::class, 'destroy'])->name('destroy');
         });
-        Route::prefix('apoteker')->name('apoteker.')->group(function () {
-            Route::get('/', [ApotekerController::class, 'index'])->name('index');
-            Route::get('/tambah', [ApotekerController::class, 'create'])->name('tambah');
-            Route::post('/tambah', [ApotekerController::class, 'store'])->name('store');
-            Route::get('/edit/{id}', [ApotekerController::class, 'edit'])->name('edit');
-            Route::put('/edit/{id}', [ApotekerController::class, 'update'])->name('update');
-            Route::delete('/delete/{id}', [ApotekerController::class, 'destroy'])->name('destroy');
+        Route::prefix('janji')->name('janji.')->group(function () {
+            Route::get('/', [JanjiTemuController::class, 'index'])->name('index');
+            Route::get('/tambah', [JanjiTemuController::class, 'create'])->name('tambah');
+            Route::post('/tambah', [JanjiTemuController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [JanjiTemuController::class, 'edit'])->name('edit');
+            Route::put('/edit/{id}', [JanjiTemuController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [JanjiTemuController::class, 'destroy'])->name('destroy');
+            Route::get('/detail/{id}', [JanjiTemuController::class, 'show'])->name('detail');
+        });
+        Route::prefix('blog')->name('blog.')->group(function () {
+            Route::get('/', [BlogController::class, 'admin_index'])->name('index');
+            Route::get('/tambah', [BlogController::class, 'admin_create'])->name('tambah');
+            Route::post('/tambah', [BlogController::class, 'admin_store'])->name('store');
+            Route::get('/edit/{id}', [BlogController::class, 'admin_edit'])->name('edit');
+            Route::put('/edit/{id}', [BlogController::class, 'admin_update'])->name('update');
+            Route::delete('/delete/{id}', [BlogController::class, 'admin_destroy'])->name('destroy');
+            // Route::get('/detail/{id}', [BlogController::class, 'show'])->name('detail');
         });
     });
 });

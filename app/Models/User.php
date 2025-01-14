@@ -21,10 +21,13 @@ class User extends Authenticatable
         'name',
         'username',
         'tanggal_lahir',
-        'no_telp',
+        'telp',
         'alamat',
         'email',
         'password',
+        'spesialis',
+        'jenis_kelamin',
+        'role',
     ];
 
     /**
@@ -48,5 +51,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function JadwalDokter()
+    {
+        return $this->hasMany(JadwalPraktik::class, 'id');
+    }
+
+    public function blog()
+    {
+        return $this->hasMany(Blog::class, 'id_author');
     }
 }
