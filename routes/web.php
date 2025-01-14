@@ -80,6 +80,15 @@ Route::middleware('auth')->group(function () {
             Route::delete('/delete/{id}', [JanjiTemuController::class, 'destroy'])->name('destroy');
             Route::get('/detail/{id}', [JanjiTemuController::class, 'show'])->name('detail');
         });
+        Route::prefix('blog')->name('blog.')->group(function () {
+            Route::get('/', [BlogController::class, 'admin_index'])->name('index');
+            Route::get('/tambah', [BlogController::class, 'admin_create'])->name('tambah');
+            Route::post('/tambah', [BlogController::class, 'admin_store'])->name('store');
+            Route::get('/edit/{id}', [BlogController::class, 'admin_edit'])->name('edit');
+            Route::put('/edit/{id}', [BlogController::class, 'admin_update'])->name('update');
+            Route::delete('/delete/{id}', [BlogController::class, 'admin_destroy'])->name('destroy');
+            // Route::get('/detail/{id}', [BlogController::class, 'show'])->name('detail');
+        });
     });
 });
 

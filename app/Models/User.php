@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(JadwalPraktik::class, 'id');
     }
+
+    public function blog()
+    {
+        return $this->hasMany(Blog::class, 'id_author');
+    }
 }
