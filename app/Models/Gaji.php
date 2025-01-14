@@ -11,11 +11,7 @@ class Gaji extends Model
 
     protected $table = 'gaji';
 
-    protected $fillable = [
-        'id_dokter',
-        'tanggal_ambil',
-        'gaji',
-    ];
+    protected $guarded = [];
 
     /**
      * Relasi ke model User sebagai dokter.

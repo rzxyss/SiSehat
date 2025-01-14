@@ -13,14 +13,7 @@ class JanjiTemu extends Model
     protected $table = 'janji_temu';
 
 
-    protected $fillable = [
-        'tanggal_temu',
-        'jam_temu',
-        'id_pasien',
-        'id_dokter',
-        'status',
-        'alasan',
-    ];
+    protected $guarded = [];
 
 
     public function pasien()
