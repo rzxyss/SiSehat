@@ -29,19 +29,19 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ request()->is('dashboard.akun.*') ? 'active' : '' }}"
+                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.akun.*') ? 'active' : '' }}"
                         href="{{ route('dashboard.akun.index') }}">
                         <i class="fa fa-user-doctor ps-2 text-2xl"></i> <span>Akun</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ request()->is('dashboard.obat.*') ? 'active' : '' }}"
+                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.obat.*') ? 'active' : '' }}"
                         href="{{ route('dashboard.obat.index') }}">
                         <i class="fa fa-pills ps-2 text-2xl"></i> <span>Obat</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ request()->is('dashboard.gaji.*') ? 'active' : '' }}"
+                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.gaji.*') ? 'active' : '' }}"
                         href="{{ route('dashboard.gaji.index') }}">
                         <i class="fa fa-usd ps-2 text-2xl"></i> <span>Gaji</span>
                     </a>
@@ -53,20 +53,20 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ request()->is('dashboard.blog.*') ? 'active' : '' }}"
+                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.blog.*') ? 'active' : '' }}"
                         href="{{ route('dashboard.blog.index') }}">
                         <i class="fa fa-newspaper ps-2 text-2xl"></i> <span>Blog</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
+                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.janji.*') ? 'active' : '' }}"
                         href="{{ route('dashboard.janji.index') }}">
                         <i class="fa fa-calendar-plus ps-2 text-2xl"></i> <span>Janji Temu Pasien</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full"
+                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.jadwal.*') ? 'active' : '' }}"
                         href="{{ route('dashboard.jadwal.index') }}">
                         <i class="fa fa-calendar-plus ps-2 text-2xl"></i> <span>Jadwal Praktik Dokter</span>
                     </a>

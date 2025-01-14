@@ -7,15 +7,18 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use function PHPSTORM_META\elementType;
-
 class BlogController extends Controller
 {
     use ValidatesRequests;
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('blog');
+        $search = $request->input('search');
+        $blog = Blog::when($search, function ($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%');
+        })->paginate(6);
+
+        return view('blog', compact('blog', 'search'));
     }
 
     public function admin_index()
