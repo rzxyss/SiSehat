@@ -43,7 +43,7 @@ class AkunController extends Controller
             'telp' => 'required',
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
-            'spesialis' => 'required',
+            'spesialis' => 'nullable',
             'password' => ['required', Rules\Password::defaults()],
             'role' => 'required'
         ]);
