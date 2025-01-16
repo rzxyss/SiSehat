@@ -7,7 +7,7 @@
                 <h1 class="text-4xl font-bold text-gray-900 mb-4">Daftar Janji Temu</h1>
             </div>
 
-            <div class="mb-6 flex justify-between items-center">
+            <div class="mb-6 flex flex-col md:flex-row md:justify-between md:items-center gap-1">
                 <div class="flex gap-4">
                     <form method="GET" action="{{ route('pasien.janji.index') }}" id="filterForm">
                         <select name="status" id="statusForm" onchange="debouncedSubmit();"

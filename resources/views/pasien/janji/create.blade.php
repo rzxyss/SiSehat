@@ -15,7 +15,7 @@
                     @csrf
 
                     <div class="mb-8">
-                        <div class="flex flex-row gap-1 mb-6">
+                        <div class="flex flex-col md:flex-row gap-1 mb-6">
                             <div class="w-full">
                                 <label class="block text-sm font-medium text-gray-700 mb-1">
                                     Tanggal
