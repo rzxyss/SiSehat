@@ -57,6 +57,37 @@
                             Tentang Kami
                         </a>
                     </li>
+                    @if (Auth::user() != null)
+                        <li>
+                            <a href="{{ route('pasien.janji.index') }}"
+                                class="block py-2 px-3 transition-colors md:p-0 {{ request()->is('pasien.janji.index') ? 'text-primary font-semibold' : 'text-gray-900 hover:text-primary' }}">
+                                Janji Temu Saya
+                            </a>
+                        </li>
+                    @endif
+                    @if (Auth::user() == null)
+                        <li>
+                            <div class="md:hidden w-full mt-4" id="navbar-auth">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <a href="/login"
+                                        class="text-center py-2 text-primary border-2 border-primary rounded-lg">
+                                        Login
+                                    </a>
+                                    <a href="/register" class="text-center py-2 bg-primary text-white rounded-lg">
+                                        Registrasi
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    @else
+                        <li class="md:hidden">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <button type="submit" class="block px-4 py-2">Logout</button>
+                            </form>
+                        </li>
+                    @endif
                 </ul>
             </div>
 
@@ -81,13 +112,9 @@
                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                             aria-labelledby="dropdownDividerButton">
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('pasien.index') }}" class="block px-4 py-2">Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('pasien.janji.index') }}" class="block px-4 py-2">Janji Temu
-                                    Dokter</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -98,17 +125,6 @@
                         </ul>
                     </div>
                 @endif
-            </div>
-
-            <div class="md:hidden w-full mt-4 hidden" id="navbar-auth">
-                <div class="grid grid-cols-2 gap-4">
-                    <a href="/login" class="text-center py-2 text-primary border-2 border-primary rounded-lg">
-                        Login
-                    </a>
-                    <a href="/register" class="text-center py-2 bg-primary text-white rounded-lg">
-                        Registrasi
-                    </a>
-                </div>
             </div>
         </div>
     </nav>
