@@ -20,6 +20,12 @@ class BlogController extends Controller
 
         return view('blog', compact('blog', 'search'));
     }
+    
+    public function detail($slug)
+    {
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+        return view('detail', compact('blog'));
+    }
 
     public function admin_index()
     {
@@ -32,6 +38,13 @@ class BlogController extends Controller
     {
         $title = 'Upload Blog';
         return view('admin.blog.create', compact('title'));
+    }
+    
+    public function admin_show(string $id)
+    {
+        $title = 'Detail Blog';
+        $blog = Blog::findOrFail($id);
+        return view('admin.blog.show', compact('title', 'blog'));
     }
 
     public function admin_store(Request $request)

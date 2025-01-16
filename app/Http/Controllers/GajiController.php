@@ -6,6 +6,7 @@ use App\Models\Gaji;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class GajiController extends Controller
 {
@@ -16,8 +17,12 @@ class GajiController extends Controller
      */
     public function index()
     {
-        $gaji = Gaji::with('dokter')->get();
         $title = 'Daftar Gaji Dokter';
+        if (Auth::user()->role == 'admin') {
+            $gaji = Gaji::with('dokter')->get();
+        } else {
+            $gaji = Gaji::with('dokter')->where('id_dokter', '=', Auth::user()->id)->get();
+        }
         return view('admin.gaji.index', compact('gaji', 'title'));
     }
 
@@ -27,7 +32,7 @@ class GajiController extends Controller
     public function create()
     {
         $title = 'Tambah Data Gaji';
-        $dokter = User::where('role','=','dokter')->get();
+        $dokter = User::where('role', '=', 'dokter')->get();
         return view('admin.gaji.create', compact('title', 'dokter'));
     }
 
@@ -61,7 +66,7 @@ class GajiController extends Controller
     public function edit(string $id)
     {
         $gaji = Gaji::findOrFail($id);
-        $dokter = User::where('role','=','dokter')->get();
+        $dokter = User::where('role', '=', 'dokter')->get();
         $title = 'Edit Data Gaji';
 
         return view('admin.gaji.edit', compact('gaji', 'dokter', 'title'));

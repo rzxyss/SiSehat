@@ -37,17 +37,21 @@
                             <h3 class="font-medium">
                                 <div class="flex flex-row gap-1 items-center">
                                     <a href="{{ route('dashboard.blog.edit', $a->id) }}"
-                                        class="py-2 px-6 btn text-xs bg-yellow-600 text-white hover:bg-yellow-700 ">
+                                        class="py-2 px-6 bg-yellow-500 hover:bg-yellow-700 rounded-2xl text-xs">
                                         Edit
                                     </a>
                                     <form method="POST" action="{{ route('dashboard.blog.destroy', $a->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="py-2 px-6 btn text-xs bg-red-600 text-white hover:bg-red-700 ">
+                                            class="py-2 px-6 bg-red-500 hover:bg-red-700 rounded-2xl text-xs">
                                             Hapus
                                         </button>
                                     </form>
+                                    <a href="{{ route('dashboard.blog.detail', $a->id) }}"
+                                        class="py-2 px-6 bg-blue-500 hover:bg-blue-700 rounded-2xl text-xs">
+                                        Detail
+                                    </a>
                                 </div>
                             </h3>
                         </td>

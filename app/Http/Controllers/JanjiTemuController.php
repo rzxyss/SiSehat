@@ -6,6 +6,7 @@ use App\Models\JanjiTemu;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class JanjiTemuController extends Controller
 {
@@ -16,8 +17,12 @@ class JanjiTemuController extends Controller
      */
     public function index()
     {
-        $janjiTemu = JanjiTemu::with(['pasien', 'dokter'])->get();
         $title = 'Daftar Janji Temu';
+        if (Auth::user()->role == 'admin') {
+            $janjiTemu = JanjiTemu::with(['pasien', 'dokter'])->get();
+        } else {
+            $janjiTemu = JanjiTemu::with(['pasien', 'dokter'])->where('id_dokter', '=', Auth::user()->id)->get();
+        }
         return view('admin.janji.index', compact('janjiTemu', 'title'));
     }
 
@@ -70,6 +75,40 @@ class JanjiTemuController extends Controller
         $janjiTemu = JanjiTemu::with(['pasien', 'dokter'])->findOrFail($id);
         $title = 'Detail Janji Temu';
         return view('admin.janji.show', compact('janjiTemu', 'title'));
+    }
+
+    public function approval(string $id)
+    {
+        $janjiTemu = JanjiTemu::findOrFail($id);
+        $title = 'Approval Janji Temu';
+        return view('admin.janji.approval', compact('janjiTemu', 'title'));
+    }
+
+    public function approve(Request $request, string $id)
+    {
+        $this->validate($request, [
+            'status' => 'required',
+            'alasan' => 'nullable',
+        ]);
+        $janjiTemu = JanjiTemu::findOrFail($id);
+
+        $janjiTemu->update([
+            'status' => $request->input('status'),
+            'alasan' => $request->input('alasan')
+        ]);
+
+        return redirect()->route('dashboard.janji.index')->with('message', 'Janji Temu Berhasil Diperbarui!');
+    }
+
+    public function completed(string $id)
+    {
+        $janjiTemu = JanjiTemu::findOrFail($id);
+
+        $janjiTemu->update([
+            'status' => '3'
+        ]);
+
+        return redirect()->route('dashboard.janji.index')->with('message', 'Janji Temu Berhasil Diperbarui!');
     }
 
     /**
