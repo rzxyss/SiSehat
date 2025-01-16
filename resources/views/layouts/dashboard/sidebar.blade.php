@@ -27,13 +27,14 @@
                     <i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
                     <span class="text-xs text-gray-400 font-semibold">MASTER DATA</span>
                 </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.akun.*') ? 'active' : '' }}"
-                        href="{{ route('dashboard.akun.index') }}">
-                        <i class="fa fa-user-doctor ps-2 text-2xl"></i> <span>Akun</span>
-                    </a>
-                </li>
+                @if (Auth::user()->role == 'admin')
+                    <li class="sidebar-item">
+                        <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.akun.*') ? 'active' : '' }}"
+                            href="{{ route('dashboard.akun.index') }}">
+                            <i class="fa fa-user-doctor ps-2 text-2xl"></i> <span>Akun</span>
+                        </a>
+                    </li>
+                @endif
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.obat.*') ? 'active' : '' }}"
                         href="{{ route('dashboard.obat.index') }}">
@@ -51,20 +52,22 @@
                     <i class="ti ti-dots nav-small-cap-icon  text-lg hidden text-center"></i>
                     <span class="text-xs text-gray-400 font-semibold">CONTENT DATA</span>
                 </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.blog.*') ? 'active' : '' }}"
-                        href="{{ route('dashboard.blog.index') }}">
-                        <i class="fa fa-newspaper ps-2 text-2xl"></i> <span>Blog</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.janji.*') ? 'active' : '' }}"
-                        href="{{ route('dashboard.janji.index') }}">
-                        <i class="fa fa-calendar-plus ps-2 text-2xl"></i> <span>Janji Temu Pasien</span>
-                    </a>
-                </li>
+                @if (Auth::user()->role == 'admin')
+                    <li class="sidebar-item">
+                        <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.blog.*') ? 'active' : '' }}"
+                            href="{{ route('dashboard.blog.index') }}">
+                            <i class="fa fa-newspaper ps-2 text-2xl"></i> <span>Blog</span>
+                        </a>
+                    </li>
+                @endif
+                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'dokter')
+                    <li class="sidebar-item">
+                        <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.janji.*') ? 'active' : '' }}"
+                            href="{{ route('dashboard.janji.index') }}">
+                            <i class="fa fa-calendar-plus ps-2 text-2xl"></i> <span>Janji Temu Pasien</span>
+                        </a>
+                    </li>
+                @endif
                 <li class="sidebar-item">
                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full {{ Route::is('dashboard.jadwal.*') ? 'active' : '' }}"
                         href="{{ route('dashboard.jadwal.index') }}">

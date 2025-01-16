@@ -6,17 +6,22 @@ use App\Models\JadwalPraktik;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class JadwalPraktikController extends Controller
-{   
+{
     use ValidatesRequests;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $jadwal = JadwalPraktik::all();
         $title = 'Jadwal Praktik';
+        if (Auth::user()->role == 'admin') {
+            $jadwal = JadwalPraktik::all();
+        } else {
+            $jadwal = JadwalPraktik::where('id_dokter', '=', Auth::user()->id);
+        }
         return view('admin.jadwal.index', compact('jadwal', 'title'));
     }
 
@@ -26,8 +31,8 @@ class JadwalPraktikController extends Controller
     public function create()
     {
         $title = 'Tambah Jadwal Praktik';
-        $dokter = User::where('role','=','dokter')->get();
-        return view('admin.jadwal.create', compact('title','dokter'));
+        $dokter = User::where('role', '=', 'dokter')->get();
+        return view('admin.jadwal.create', compact('title', 'dokter'));
     }
 
     /**
@@ -71,10 +76,10 @@ class JadwalPraktikController extends Controller
     public function edit(string $id)
     {
         $jadwal = JadwalPraktik::findOrFail($id);
-        $dokter = User::where('role','=','dokter')->get();
+        $dokter = User::where('role', '=', 'dokter')->get();
         $title = 'Update Jadwal';
 
-        return view('admin.jadwal.edit', compact('jadwal', 'title','dokter'));
+        return view('admin.jadwal.edit', compact('jadwal', 'title', 'dokter'));
     }
 
     /**
@@ -91,7 +96,7 @@ class JadwalPraktikController extends Controller
         ]);
         $jadwal = JadwalPraktik::findOrFail($id);
 
-        $jadwal ->update([
+        $jadwal->update([
             'tanggal' => $request->input('tanggal'),
             'jam_mulai' => $request->input('jam_mulai'),
             'jam_selesai' => $request->input('jam_selesai'),
@@ -103,7 +108,6 @@ class JadwalPraktikController extends Controller
         } else {
             return redirect()->route('dashboard.jadwal.tambah')->with('error', 'Terjadi Kesalahan Saat Menambahkan jadwal!');
         }
-    
     }
 
     /**

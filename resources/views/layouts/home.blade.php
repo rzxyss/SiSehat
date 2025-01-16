@@ -62,37 +62,41 @@
 
             <div class="hidden md:flex items-center space-x-4">
                 @if (Auth::user() == null)
-                <a href="/login"
-                    class="px-6 py-2 text-primary border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
-                    Login
-                </a>
-                <a href="/register"
-                    class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-shade1 transition-colors">
-                    Registrasi
-                </a>
+                    <a href="/login"
+                        class="px-6 py-2 text-primary border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
+                        Login
+                    </a>
+                    <a href="/register"
+                        class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-shade1 transition-colors">
+                        Registrasi
+                    </a>
                 @else
+                    <button data-dropdown-toggle="dropdownUser"
+                        class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-shade1 transition-colors"
+                        type="button">{{ Auth::user()->name }}
+                    </button>
 
-                <button data-dropdown-toggle="dropdownUser"
-                    class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-shade1 transition-colors"
-                    type="button">{{Auth::user()->name}}
-                </button>
+                    <!-- Dropdown menu -->
+                    <div id="dropdownUser"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                            aria-labelledby="dropdownDividerButton">
+                            <li>
+                                <a href="{{ route('pasien.index') }}" class="block px-4 py-2">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pasien.janji.index') }}" class="block px-4 py-2">Janji Temu
+                                    Dokter</a>
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
 
-                <!-- Dropdown menu -->
-                <div id="dropdownUser"
-                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
-                        <li>
-                            <a href="{{route('pdash.index')}}" class="block px-4 py-2">Dashboard</a>
-                        </li>
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-
-                                <button type="submit" class="block px-4 py-2">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
+                                    <button type="submit" class="block px-4 py-2">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 @endif
             </div>
 

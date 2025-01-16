@@ -30,8 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::prefix('pdash')->name('pdash.')->group(function () {
+    Route::prefix('pasien')->name('pasien.')->group(function () {
         Route::get('/', [PasienController::class, 'dashboard'])->name('index');
+        Route::prefix('janji')->name('janji.')->group(function () {
+            Route::get('/', [PasienController::class, 'janji_temu'])->name('index');
+            Route::get('/tambah', [PasienController::class, 'create_janji'])->name('create');
+            Route::post('/tambah', [PasienController::class, 'store_janji'])->name('store');
+        });
     });
 
     Route::middleware('role:admin,apoteker,dokter')->prefix('dashboard')->name('dashboard.')->group(function () {
@@ -75,6 +80,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/', [JanjiTemuController::class, 'index'])->name('index');
             Route::get('/tambah', [JanjiTemuController::class, 'create'])->name('tambah');
             Route::post('/tambah', [JanjiTemuController::class, 'store'])->name('store');
+            Route::get('/approve/{id}', [JanjiTemuController::class, 'approval'])->name('approval');
+            Route::put('/approve/{id}', [JanjiTemuController::class, 'approve'])->name('approve');
+            Route::put('/completed/{id}', [JanjiTemuController::class, 'completed'])->name('completed');
             Route::get('/edit/{id}', [JanjiTemuController::class, 'edit'])->name('edit');
             Route::put('/edit/{id}', [JanjiTemuController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [JanjiTemuController::class, 'destroy'])->name('destroy');
