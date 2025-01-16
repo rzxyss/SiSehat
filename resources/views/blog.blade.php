@@ -29,10 +29,10 @@
                             class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h2 class="text-xl font-semibold mb-2 hover:text-primary">
-                                <a href="#">{{ $b->title }}</a>
+                                <a href="{{ route('blog.detail', $b->slug) }}">{{ $b->title }}</a>
                             </h2>
                             <p class="text-gray-600 mb-4 line-clamp-2">
-                                {{ nl2br($b->content) }}
+                                {{ Str::limit(strip_tags($b->content), 100, '...') }}
                             </p>
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-2">
@@ -40,7 +40,10 @@
                                         class="w-8 h-8 rounded-full">
                                     <span class="text-sm text-gray-700">{{ $b->author->name }}</span>
                                 </div>
-                                <span class="text-sm text-gray-500">2 hari yang lalu</span>
+                                <span class="text-sm text-gray-500">
+                                    ({{ $b->created_at->diffInDays(now()) < 1 ? $b->created_at->diffForHumans() : $b->created_at->diffInDays(now()) . ' hari' }}
+                                    yang lalu)
+                                </span>
                             </div>
                         </div>
                     </article>

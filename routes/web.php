@@ -23,6 +23,7 @@ Route::prefix('bmi')->name('bmi.')->group(function () {
 });
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
+    Route::get('/{id}', [BlogController::class, 'detail'])->name('detail');
 });
 
 Route::middleware('auth')->group(function () {
@@ -95,7 +96,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{id}', [BlogController::class, 'admin_edit'])->name('edit');
             Route::put('/edit/{id}', [BlogController::class, 'admin_update'])->name('update');
             Route::delete('/delete/{id}', [BlogController::class, 'admin_destroy'])->name('destroy');
-            // Route::get('/detail/{id}', [BlogController::class, 'show'])->name('detail');
+            Route::get('/detail/{slug}', [BlogController::class, 'admin_show'])->name('detail');
         });
     });
 });

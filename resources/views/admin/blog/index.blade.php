@@ -48,6 +48,10 @@
                                             Hapus
                                         </button>
                                     </form>
+                                    <a href="{{ route('dashboard.blog.detail', $a->id) }}"
+                                        class="py-2 px-6 bg-blue-500 hover:bg-blue-700 rounded-2xl text-xs">
+                                        Detail
+                                    </a>
                                 </div>
                             </h3>
                         </td>
