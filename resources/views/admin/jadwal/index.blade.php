@@ -38,7 +38,7 @@
                             <h3 class="font-medium">{{ $d->jam_selesai }}</h3>
                         </td>
                         <td class="p-4">
-                            <h3 class="font-medium">{{ $d->id_dokter }}</h3>
+                            <h3 class="font-medium">{{ $d->dokter->name }}</h3>
                         </td>
                         @if (Auth::user()->role == 'admin')
                             <td class="p-4">

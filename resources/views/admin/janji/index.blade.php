@@ -18,7 +18,9 @@
                     <th scope="col" class="p-4 font-semibold">Tanggal Temu</th>
                     <th scope="col" class="p-4 font-semibold">Jam Temu</th>
                     <th scope="col" class="p-4 font-semibold">Status</th>
-                    <th scope="col" class="p-4 font-semibold">Aksi</th>
+                    @if (Auth::user()->role == 'admin')
+                        <th scope="col" class="p-4 font-semibold">Aksi</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
