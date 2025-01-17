@@ -13,6 +13,7 @@
             <thead>
                 <tr class="text-sm">
                     <th scope="col" class="p-4 font-semibold">No</th>
+                    <th scope="col" class="p-4 font-semibold">Foto Obat</th>
                     <th scope="col" class="p-4 font-semibold">Nama Obat</th>
                     <th scope="col" class="p-4 font-semibold">Deskripsi</th>
                     <th scope="col" class="p-4 font-semibold">Harga</th>
@@ -28,6 +29,10 @@
                     <tr>
                         <td class="p-4">
                             <h3 class="font-bold">{{ $index + 1 }}</h3>
+                        </td>
+                        <td class="p-4">
+                            <img class="h-auto" id="preview" src="{{ asset('assets/image/obat/' . $d->foto) }}"
+                                alt="Thumbnail" width="100px">
                         </td>
                         <td class="p-4">
                             <h3 class="font-medium">{{ $d->nama_obat }}</h3>
