@@ -11,10 +11,11 @@
             <thead>
                 <tr class="text-sm">
                     <th scope="col" class="p-4 font-semibold">No</th>
-                    <th scope="col" class="p-4 font-semibold">Nama Dokter</th>
+                    <th scope="col" class="p-4 font-semibold">Nama</th>
                     <th scope="col" class="p-4 font-semibold">Email</th>
                     <th scope="col" class="p-4 font-semibold">Nomor Telepon</th>
                     <th scope="col" class="p-4 font-semibold">Spesialis</th>
+                    <th scope="col" class="p-4 font-semibold">Role</th>
                     <th scope="col" class="p-4 font-semibold">Aksi</th>
                 </tr>
             </thead>
@@ -45,6 +46,9 @@
                             @else
                                 <h3 class="font-medium">-</h3>
                             @endif
+                        </td>
+                        <td class="p-4">
+                            <h3 class="font-medium">{{ ucwords($d->role) }}</h3>
                         </td>
                         <td class="flex flex-row gap-1 items-center p-4">
                             <a href="{{ route('dashboard.akun.edit', $d->id) }}"
