@@ -16,7 +16,7 @@
                     <th scope="col" class="p-4 font-semibold">Tanggal</th>
                     <th scope="col" class="p-4 font-semibold">Jam Mulai</th>
                     <th scope="col" class="p-4 font-semibold">Jam selesai</th>
-                    <th scope="col" class="p-4 font-semibold">ID Dokter</th>
+                    <th scope="col" class="p-4 font-semibold">Nama Dokter</th>
                     @if (Auth::user()->role == 'admin')
                         <th scope="col" class="p-4 font-semibold">Aksi</th>
                     @endif
