@@ -48,7 +48,7 @@ class AkunController extends Controller
             'role' => 'required'
         ]);
 
- 
+
         $akun = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -85,7 +85,7 @@ class AkunController extends Controller
             'telp' => 'required',
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
-            'spesialis' => 'required',
+            'spesialis' => 'nullable',
             'password' => ['nullable', 'string'],
             'role' => 'required'
         ]);
