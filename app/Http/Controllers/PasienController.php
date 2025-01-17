@@ -23,13 +23,13 @@ class PasienController extends Controller
     {
         $status = $request->input('status');
         $status = $request->get('status');
-        $query = JanjiTemu::with('dokter', 'pasien');
+        $query = JanjiTemu::with('dokter', 'pasien')->where('id_pasien', Auth::user()->id);
 
         if (!is_null($status)) {
             $query->where('status', $status);
         }
-
         $janji = $query->paginate(10);
+
         return view('pasien.janji.index', compact('janji'));
     }
 
