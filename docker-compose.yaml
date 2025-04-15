@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    volumes:
+      - .:/var/www
+    ports:
+      - "8000:80"
+    environment:
+      - DB_HOST=sisehat-epull.d.aivencloud.com
+      - DB_PORT=24759
+      - DB_DATABASE=defaultdb
+      - DB_USERNAME=avnadmin
+      - DB_PASSWORD=AVNS_KYCqZM78jFhtUjt7Fyq
